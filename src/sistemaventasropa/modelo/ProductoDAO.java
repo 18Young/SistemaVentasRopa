@@ -51,4 +51,29 @@ public class ProductoDAO {
 
         return lista;
     }
+    public Producto buscarProductoPorNombre(String nombreBuscado) {
+    String sql = "SELECT * FROM productos WHERE nombre = ?";
+    Producto producto = null;
+
+    try (Connection conexion = ConexionBD.conectar();
+         PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+        ps.setString(1, nombreBuscado);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            producto = new Producto();
+            producto.setId(rs.getInt("id"));
+            producto.setNombre(rs.getString("nombre"));
+            producto.setDescripcion(rs.getString("descripcion"));
+            producto.setPrecio(rs.getDouble("precio"));
+        }
+
+    } catch (Exception e) {
+        System.out.println("Error al buscar producto: " + e.getMessage());
+    }
+
+    return producto;
+}
+    
 }

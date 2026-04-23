@@ -1,11 +1,11 @@
 package sistemaventasropa;
 
-import sistemaventasropa.vista.VistaProducto;
+import sistemaventasropa.vista.VentanaPrincipal;
 
 public class Main {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(() -> {
-            new VistaProducto().setVisible(true);
+            new VentanaPrincipal().setVisible(true);
         });
     }
 }
